@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arch Research Students — Calendar</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+  }
+  .card {
+    width: 100%;
+    max-width: 460px;
+    background: #fff;
+    border-radius: 24px;
+    padding: 34px 24px 28px;
+    box-shadow: 0 12px 38px rgba(0,0,0,.08);
+  }
+  .calendar-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 16px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: #f0f3ff;
+    font-size: 29px;
+  }
+  h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+  }
+  .subtitle {
+    margin: 9px auto 22px;
+    max-width: 360px;
+    text-align: center;
+    color: #666;
+    line-height: 1.5;
+    font-size: 15px;
+  }
+  .sources {
+    margin: 0 0 24px;
+    padding: 17px 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    background: #fafafa;
+  }
+  .sources-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .sources ul {
+    padding-left: 18px;
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .button {
+    display: block;
+    width: 100%;
+    padding: 15px 18px;
+    margin: 10px 0;
+    border-radius: 13px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 650;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+  }
+  .google { background: #1a73e8; color: #fff; }
+  .apple { background: #111; color: #fff; }
+  .outlook { background: #0f6cbd; color: #fff; }
+  .panel {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    border-radius: 14px;
+    background: #f2f7fc;
+  }
+  .panel strong { font-size: 15px; }
+  .panel p {
+    margin: 8px 0 12px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.55;
+  }
+  .panel a {
+    display: block;
+    margin: 9px 0;
+    color: #0f6cbd;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    font-size: 12px;
+    background: #fff;
+  }
+  .copy {
+    width: 100%;
+    margin-top: 9px;
+    padding: 10px;
+    border: 0;
+    border-radius: 9px;
+    background: #e6e6e6;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .note {
+    margin: 19px auto 0;
+    max-width: 390px;
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="calendar-icon">📅</div>
+  <h1>Arch Research Students</h1>
+  <div class="subtitle">
+    Subscribe to the shared calendar and keep track of events in one place.
+  </div>
+
+  <section class="sources">
+    <div class="sources-title">This calendar combines:</div>
+    <ul>
+      <li>Students Calendar</li>
+      <li>seminararchitecture@gmail.com</li>
+      <li>Architecture Researchers' Community</li>
+    </ul>
+  </section>
+
+  <a class="button google"
+     href="https://calendar.google.com/calendar/u/0/r?cid=webcal%3A%2F%2Fcalendarcombine.com%2Ffeed%2FsjBSykSNJTrF00SquoCI-cemaeASB9iGWOX7aLcY_zo.ics"
+     target="_blank" rel="noopener">
+    Add to Google Calendar
+  </a>
+
+  <a class="button apple"
+     href="webcal://calendarcombine.com/feed/sjBSykSNJTrF00SquoCI-cemaeASB9iGWOX7aLcY_zo.ics">
+    Add to Apple / iPhone Calendar
+  </a>
+
+  <button class="button outlook" type="button" onclick="showOutlook()">
+    Add to Outlook
+  </button>
+
+  <section class="panel" id="outlookPanel">
+    <strong>Add to Outlook</strong>
+    <p>
+      In Outlook, open <b>Add calendar</b> → <b>Subscribe from web</b>, then paste the calendar address below and choose <b>Import</b>.
+    </p>
+    <a href="https://outlook.live.com/calendar/" target="_blank" rel="noopener">
+      Open Outlook.com Calendar →
+    </a>
+    <a href="https://outlook.office.com/calendar/" target="_blank" rel="noopener">
+      Open Microsoft 365 Calendar →
+    </a>
+    <input id="calendarUrl"
+      value="https://calendarcombine.com/feed/sjBSykSNJTrF00SquoCI-cemaeASB9iGWOX7aLcY_zo.ics"
+      readonly>
+    <button class="copy" type="button" id="copyButton" onclick="copyUrl()">Copy calendar address</button>
+  </section>
+
+  <div class="note">
+    The calendar is a read-only subscription. When the source calendars change, the combined feed can update automatically.
+  </div>
+</main>
+
+<script>
+const calendarUrl = "https://calendarcombine.com/feed/sjBSykSNJTrF00SquoCI-cemaeASB9iGWOX7aLcY_zo.ics";
+
+function showOutlook() {
+  document.getElementById("outlookPanel").style.display = "block";
+}
+
+async function copyUrl() {
+  const button = document.getElementById("copyButton");
+  try {
+    await navigator.clipboard.writeText(calendarUrl);
+  } catch (e) {
+    const input = document.getElementById("calendarUrl");
+    input.focus();
+    input.select();
+    document.execCommand("copy");
+  }
+  button.textContent = "Copied!";
+  setTimeout(() => button.textContent = "Copy calendar address", 1600);
+}
+</script>
+</body>
+</html>
